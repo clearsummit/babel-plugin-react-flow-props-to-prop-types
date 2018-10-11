@@ -1,6 +1,7 @@
 // @flow
 import type {Node, Path} from './types';
 import * as t from 'babel-types';
+import {addDefault} from '@babel/helper-module-imports';
 import {isReactComponentClass} from 'babel-react-components';
 import findPropsClassProperty from './findPropsClassProperty';
 import convertTypeToPropTypes from './convertTypeToPropTypes';
@@ -36,22 +37,18 @@ export default function() {
 
             function getPropTypesRef() {
               if (!propTypesRef) {
-                propTypesRef = path.hub.file.addImport(
-                  'prop-types',
-                  'default',
-                  'PropTypes',
-                );
+                propTypesRef = addDefault(path, 'prop-types', {
+                  nameHint: 'PropTypes',
+                });
               }
               return propTypesRef;
             }
 
             function getPropTypesAllRef() {
               if (!propTypesAllRef) {
-                propTypesAllRef = path.hub.file.addImport(
-                  'prop-types-extra/lib/all',
-                  'default',
-                  'all',
-                );
+                propTypesAllRef = addDefault(path, 'prop-types-extra/lib/all', {
+                  nameHint: 'all',
+                });
               }
               return propTypesAllRef;
             }

@@ -47,6 +47,7 @@
     "coverageDirectory": "coverage/jest"
   },
   "dependencies": {
+    "@babel/helper-module-imports": "^7.0.0",
     "babel-errors": "^1.1.0",
     "babel-explode-module": "^2.0.0",
     "babel-file-loader": "^1.0.1",
